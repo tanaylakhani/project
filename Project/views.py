@@ -14,7 +14,7 @@ import string
 import os
 from geopy.geocoders import Nominatim
 from django.conf import settings
-SITE_URL = 'home/bitnami/apps/django/django_projects/Project/Project/static'
+SITE_URL = 'home/bitnami/apps/django/django_projects/Project/static'
 
 def getResponse(data):
     try:

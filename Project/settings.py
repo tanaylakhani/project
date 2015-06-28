@@ -67,7 +67,7 @@ DATABASES = {
         'PASSWORD': '29ef272dd1'
     }
 }
-SITE_URL = 'home/bitnami/apps/django/django_projects/Project/Project/static'
+SITE_URL = 'home/bitnami/apps/django/django_projects/Project/static'
 EXAMPLE_DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
