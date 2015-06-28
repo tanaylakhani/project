@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf.urls.static import static
 from django.views.debug import default_urlconf
-
+from django.conf import settings
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'Project.views.home', name='home'),
