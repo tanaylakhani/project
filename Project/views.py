@@ -84,6 +84,7 @@ def parse_places_api(location, access_token):
             count = count -1
             # print eachResult['id']
             placeDetails = get_place_details(eachResult['id'], access_token)
+            print "place:" 
             print placeDetails
             json_http_response.append(placeDetails)
         except Exception, e:
@@ -110,8 +111,13 @@ def get_place_details(placeId, access_token):
         print placeId
         url = 'https://graph.facebook.com/' + placeId + '?fields=photos.limit(1).type(profile),location,friends,checkins,name,description,id,category&access_token=' + access_token
         r = requests.get(url)
+        print "r:"
+        print r.text
         json_response = json.loads(r.text)
+        print "json_response:"
+        print json_response
         friends_checkins = json_response['friends_checkins']
+        print "checkins:"
         print friends_checkins
         if friends_checkins < 1:
             return data
