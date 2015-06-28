@@ -14,6 +14,8 @@ import string
 import os
 from geopy.geocoders import Nominatim
 from django.conf import settings
+SITE_URL = 'home/bitnami/apps/django/django_projects/Project/'
+
 def getResponse(data):
     try:
         response = HttpResponse(json.dumps(data),mimetype='application/json')
