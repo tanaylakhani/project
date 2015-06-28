@@ -63,8 +63,9 @@ def parse_places_api(location, access_token):
     }
     r = requests.get(url,params=payload)
     json_response = json.loads(r.text)
-    #print json_response
+    print json_response
     data = json_response['data']
+    print data
     count = len(json_response['data'])
     max_pagination = 1
     retries = 0
@@ -79,11 +80,8 @@ def parse_places_api(location, access_token):
             print "no data in next field"
             continue
     for eachResult in data:
-        
         try:
-            
             count = count -1
-            
             print eachResult['id']
             placeDetails = get_place_details(eachResult['id'], access_token)
             
