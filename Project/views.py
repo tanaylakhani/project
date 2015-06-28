@@ -109,19 +109,16 @@ def get_place_details(placeId, access_token):
     try:
         data = {}
         print placeId
-        url = 'https://graph.facebook.com/' + placeId + '?fields=photos.limit(1).type(profile),location,checkins,name,description,id,category&access_token=' + access_token
+        url = 'https://graph.facebook.com/' + placeId + '?fields=photos.limit(1).type(profile),location,friends,checkins,name,description,id,category&access_token=' + access_token
         r = requests.get(url)
         print "r:"
         print r.text
         json_response = json.loads(r.text)
-        print "json_response:"
-        print json_response
-        friends_checkins = json_response['friends_checkins']
-        print "checkins:"
-        print friends_checkins
-        if friends_checkins < 1:
-            return data
         checkins = json_response['checkins']
+        if checkins < 1:
+            return data
+        print "checkins:"
+        print checkins
         longitude = json_response['location']['longitude']
         latitude = json_response['location']['latitude']
         place_id = json_response['id']
