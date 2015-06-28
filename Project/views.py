@@ -29,21 +29,21 @@ def api_v1_canvas(request):
             geolocator = Nominatim()
             location = None
             access_token = request.POST.get('access_token')
-            print "access_token:" + access_token
+            # print "access_token:" + access_token
             text_location = request.POST.get('text_location')
             gps_location = request.POST.get('gps_location').decode('utf8') 
 
             if text_location:
                 geo = geolocator.geocode(text_location)
                 if hasattr(geo, 'latitude') and hasattr(geo, 'longitude'):
-                    print geo.latitude
-                    print geo.longitude
+                    # print geo.latitude
+                    # print geo.longitude
                     location = str(geo.latitude) + "," + str(geo.longitude)
                 else:
                     pass
             else:
                 location = str(gps_location)
-                print "location: " + location
+                # print "location: " + location
                 pass
             filename = parse_places_api(location, access_token)
         except Exception,e:
@@ -63,7 +63,7 @@ def parse_places_api(location, access_token):
     }
     r = requests.get(url,params=payload)
     json_response = json.loads(r.text)
-    print json_response
+    # print json_response
     data = json_response['data']
     print data
     count = len(json_response['data'])
@@ -82,11 +82,10 @@ def parse_places_api(location, access_token):
     for eachResult in data:
         try:
             count = count -1
-            print eachResult['id']
+            # print eachResult['id']
             placeDetails = get_place_details(eachResult['id'], access_token)
-            
+            print placeDetails
             json_http_response.append(placeDetails)
-            
         except Exception, e:
             #print e
             print "Data could not be saved"
@@ -108,10 +107,12 @@ def get_place_details(placeId, access_token):
     ''' This method gets details of places using facebook graph api '''
     try:
         data = {}
+        print placeId
         url = 'https://graph.facebook.com/' + placeId + '?fields=photos.limit(1).type(profile),location,friends,checkins,name,description,id,category&access_token=' + access_token
         r = requests.get(url)
         json_response = json.loads(r.text)
         friends_checkins = json_response['friends_checkins']
+        print friends_checkins
         if friends_checkins < 1:
             return data
         checkins = json_response['checkins']
