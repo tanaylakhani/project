@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', default_urlconf),
+    url('^api_places/', 'views.api_v1_canvas'),
 )
