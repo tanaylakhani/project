@@ -109,7 +109,7 @@ def get_place_details(placeId, access_token):
     try:
         data = {}
         print placeId
-        url = 'https://graph.facebook.com/' + placeId + '?fields=photos.limit(1).type(profile),location,friends,checkins,name,description,id,category&access_token=' + access_token
+        url = 'https://graph.facebook.com/' + placeId + '?fields=photos.limit(1).type(profile),location,checkins,name,description,id,category&access_token=' + access_token
         r = requests.get(url)
         print "r:"
         print r.text
