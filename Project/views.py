@@ -64,6 +64,8 @@ def parse_places_api(location, access_token):
     #print json_response
     data = json_response['data']
     count = len(json_response['data'])
+    max_pagination = 1
+    retries = 0
     while ('next' in json_response['paging'] and retries < max_pagination):
         try:
             url = json_response['paging']['next']
